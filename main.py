@@ -17,11 +17,14 @@ def search(city , offset):
 
     for biz in buisness_data['businesses']:
         print(biz['name'])
-
+        print((str(biz['location']['address1'])) +(" ")+ (str(biz['location']['city']))+ (" ")+ (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
+        print(biz['phone'])
+        print((str(biz['rating'])) + (" Stars"))
+        print()
 
 #API stuff
 buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
-API_KEY = 'KyOYfJZS9HfNvVPmVD-QFj4ITXBV_ZAKLLjI2TxQHrlsGnfo0mVJJB8xtyV5BlW_p5-S_RmwhF8nrenZer_GC5lz6r9gZCM2pyi1rurotBNSebPFqOBQh_jvl4bLXHYx'
+API_KEY = 'YOUR API KEY'
 ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
 HEADERS = {'Authorization': 'Bearer %s' % API_KEY}
 
@@ -30,12 +33,13 @@ HEADERS = {'Authorization': 'Bearer %s' % API_KEY}
 def main():
     print("Welcome to BobaMe!")
     print("")
-    user_city = raw_input("Enter your city or zip code to find the nearest boba shop: ")
+
+    user_city = input("Enter your city or zip code to find the nearest boba shop: ")
     user_offset = 0
 
     search(user_city , user_offset)
     print("")
-    try_again = raw_input("Would you like to find more options? y/n ")
+    try_again = input("Would you like to find more options? y/n ")
 
     while(try_again == "y" or try_again == "Y"):
         while(user_offset != 6):
@@ -45,7 +49,7 @@ def main():
             if(user_offset == 6):
                 break
             else:
-                try_again = raw_input("Would you like to find more options? y/n ")
+                try_again = input("Would you like to find more options? y/n ")
         break
 
 
