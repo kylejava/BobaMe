@@ -1,0 +1,174 @@
+WindowManager:
+    OpenScreen:
+    MainScreen:
+
+<OpenScreen>:
+    name: "OpenScreen"
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            GridLayout:
+                cols:1
+                Label:
+                    font_name: './fonts/SR-BOLD.ttf'
+                    font_size: 55
+                    text: "BobaMe!"
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    font_size: 30
+                    text: "Press Search To Find\nBoba Shops Near You!"
+                    size: self.texture_size
+            Button:
+                size_hint: 0.5,0.12
+                background_color:(0 , 0, 0 ,0)
+                size: self.texture_size
+                background_normal:''
+                font_size: 42
+                font_name: './fonts/SR.ttf'
+                back_color:(.7 , .8 , 1.0 , 1.0)
+                border_radius:[30]
+                canvas.before:
+                    Color:
+                        rgba: self.back_color
+                    RoundedRectangle:
+                        size: self.size
+                        pos:self.pos
+                        radius: self.border_radius
+
+                text:"Search"
+                on_press: app.root.current = 'InputScreen'
+                on_press:
+                    root.manager.transition.direction = "left"
+
+
+<MainScreen>:
+    name: "InputScreen"
+
+    bobashop: bobashop
+    bobalocation: bobalocation
+    bobaphone: bobaphone
+    bobareview: bobareview
+    bobaimage: bobaimage
+
+    GridLayout:
+        cols:1
+
+        Button:
+            size_hint: 0.5,0.12
+            background_color:(0 , 0, 0 ,0)
+            background_normal:''
+            font_size: 35
+            font_name: './fonts/SR.ttf'
+            back_color:(.7 , .8 , 1.0 , 1.0)
+            border_radius:[25]
+            canvas.before:
+                Color:
+                    rgba: self.back_color
+                RoundedRectangle:
+                    size: self.size
+                    pos:self.pos
+                    radius: self.border_radius
+
+            font_name: './fonts/SR.ttf'
+            text: "Back to HomeScreen"
+            on_press:
+                opacity: .5
+                app.root.current = 'OpenScreen'
+            size_hint: 0.5,0.12
+            on_press:
+                root.manager.transition.direction = "right"
+
+        GridLayout:
+            cols:2
+            GridLayout:
+
+                cols:1
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    font_size: 20
+                    id: bobashop
+                    text: " "
+
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    font_size: 20
+                    id: bobalocation
+                    text: " "
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    font_size: 20
+                    id: bobaphone
+                    text: " "
+
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    font_size: 20
+                    id: bobareview
+                    text: " "
+
+            GridLayout:
+                cols:1
+                AsyncImage:
+                    id:bobaimage
+                    source: str(root.bobaimage)
+
+
+        GridLayout:
+            cols:3
+            size_hint: 0.5,0.12
+            Button:
+                size_hint: 0.5,0.12
+                background_color:(0 , 0, 0 ,0)
+                background_normal:''
+                font_size: 30
+                font_name: './fonts/SR.ttf'
+                back_color:(.7 , .8 , 1.0 , 1.0)
+                border_radius:[35]
+                canvas.before:
+                    Color:
+                        rgba: self.back_color
+                    RoundedRectangle:
+                        size: self.size
+                        pos:self.pos
+                        radius: self.border_radius
+
+                text: "Go Back"
+                size_hint: 0.5, 0.12
+                on_release: root.subSearch()
+
+            Button:
+                text: "Copy Address"
+                size_hint: 0.7,0.22
+                background_color:(0 , 0, 0 ,0)
+                background_normal:''
+                font_size: 30
+                font_name: './fonts/SR.ttf'
+                back_color:(.7 , .8 , 1.0 , 1.0)
+                border_radius:[35]
+                canvas.before:
+                    Color:
+                        rgba: self.back_color
+                    RoundedRectangle:
+                        size: self.size
+                        pos:self.pos
+                        radius: self.border_radius
+            Button:
+                size_hint: 0.5,0.12
+                background_color:(0 , 0, 0 ,0)
+                background_normal:''
+                font_size: 30
+                font_name: './fonts/SR.ttf'
+                back_color:(.7 , .8 , 1.0 , 1.0)
+                border_radius:[35]
+                canvas.before:
+                    Color:
+                        rgba: self.back_color
+                    RoundedRectangle:
+                        size: self.size
+                        pos:self.pos
+                        radius: self.border_radius
+
+                text: "More"
+                size_hint: 0.5, 0.12
+                on_release: root.addSearch()
