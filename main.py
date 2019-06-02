@@ -1,68 +1,59 @@
-
-#api key
+import kivy
 import requests
 import json
-
-def search(city , offset):
-    PARAMETERS = {'term': 'boba',
-                    'limit': 3,
-                    'radius': 10000,
-                    'location': city,
-                    'offset': offset
-                    }
-
-    response = requests.get(url = ENDPOINT , params = PARAMETERS, headers = HEADERS)
-
-    buisness_data = response.json()
-    #print(buisness_data[])
-
-    for biz in buisness_data['businesses']:
-        if(KeyError == 'buisnesses'):
-            return None
-        else:
-            shop_name = (biz['name'])
-            shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
-            phone = (biz['phone'])
-            review = ((str(biz['rating'])) + (" Stars"))
-            image = (biz['image_url'])
-            return [shop_name , shop_location , phone , review , image]
-#API stuff
-buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
-API_KEY = 'KyOYfJZS9HfNvVPmVD-QFj4ITXBV_ZAKLLjI2TxQHrlsGnfo0mVJJB8xtyV5BlW_p5-S_RmwhF8nrenZer_GC5lz6r9gZCM2pyi1rurotBNSebPFqOBQh_jvl4bLXHYx'
-ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
-HEADERS = {'Authorization': 'Bearer %s' % API_KEY}
+import random
+import urllib.request
+from get_a import getAPI
+import func_app
+from func_app import function
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.lang import Builder
+from kivy.properties import ObjectProperty
+from kivy.core.window import Window
+from kivy.core.image import Image
+from kivy.uix.screenmanager import ScreenManager , Screen
+from kivy.uix.widget import Widget
+from kivy.properties import NumericProperty
+from kivy.uix.textinput import TextInput
 
 
-#Main Function\
-def main():
-    print("Welcome to BobaMe!")
-    print("")
 
+
+class OpenScreen(Screen):
+    pass
+
+class MainScreen(Screen):
+    bobashop = ObjectProperty(0)
+    bobalocation = ObjectProperty(0)
+    bobaphone = ObjectProperty(0)
+    bobareview = ObjectProperty(0)
+    bobaimage = ObjectProperty(" ")
+    current = ""
     res = requests.get('https://ipinfo.io/')
     data = res.json()
+    def __init__(self, **kwargs):
+        super(MainScreen, self).__init__(**kwargs)
+        self.user_city = ""
+    def on_enter(self):
+        function.locate(self)
 
-    user_city = data['loc']
-    user_offset = 0
+    def addSearch(self):
+        function.search_again(self)
 
-    x = search(user_city , user_offset)
-
-    print(x)
-    print("")
-    try_again = input("Would you like to find more options? y/n ")
-    while(try_again == "y" or try_again == "Y"):
-        while(user_offset != 6):
-            user_offset = user_offset + 3
-            x = search(user_city , user_offset)
-            print(x)
-            print("")
-            if(user_offset == 6):
-                break
-            else:
-                try_again = input("Would you like to find more options? y/n ")
-                if(try_again == "n"):
-                    break
-        break
+    def subSearch(self):
+        function.go_back(self)
 
 
 
-main()
+class WindowManager(ScreenManager):
+    pass
+
+
+kv = Builder.load_file("bobame.kv")
+
+class BobaMeApp(App):
+    def build(self):
+        return kv
+if __name__ =="__main__":
+    BobaMeApp().run()
