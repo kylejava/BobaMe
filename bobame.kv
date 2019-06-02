@@ -49,8 +49,12 @@ WindowManager:
     bobalocation: bobalocation
     bobaphone: bobaphone
     bobareview: bobareview
-    #bobaimage: bobaimage
+    bobaimage: bobaimage
 
+    AsyncImage:
+        id:bobaimage
+        source: (str(root.bobaimage))
+        opacity: 0.2
     GridLayout:
         cols:1
 
@@ -106,11 +110,8 @@ WindowManager:
                     id: bobareview
                     text: " "
 
-            #GridLayout:
-            #    cols:1
-            #    AsyncImage:
-            #        id:bobaimage
-                    #source: (str(root.bobaimage))
+
+
 
 
         GridLayout:
