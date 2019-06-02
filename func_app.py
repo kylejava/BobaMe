@@ -1,6 +1,6 @@
 import requests
 import json
-from get_a import getAPI_y , getAPI_g
+from get_a import getAPI_g , getAPI_y
 
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
@@ -28,8 +28,8 @@ def locate(self):
         #url = 'https://ipinfo.io/'
         #res = requests.get(url, auth=('user' , 'pass') , verify=False)
         #data = res.json()
-        key = getAPI_g
-        send_url = ("http://api.ipstack.com/check?access_key=" + str(key))
+        key = getAPI_g()
+        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
         geo_req = requests.get(send_url)
         geo_json = json.loads(geo_req.text)
         latitude = geo_json['latitude']
@@ -56,9 +56,8 @@ def locate(self):
 
 def search_again(self):
     if(self.offset < 7):
-        key = getAPI_g
-        send_url = ("http://api.ipstack.com/check?access_key=" + key)
-        print(send_url)
+        key = getAPI_g()
+        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
         geo_req = requests.get(send_url)
         geo_json = json.loads(geo_req.text)
         latitude = geo_json['latitude']
@@ -66,7 +65,7 @@ def search_again(self):
         user_city = geo_json['zip']
 
         self.offset += 1
-        self.shop = search(user_city , (self.offset))
+        self.shop =search(user_city , (self.offset))
         shop = self.shop
         shop_name = shop[0]
         shop_location = shop[1]
@@ -84,8 +83,8 @@ def search_again(self):
 
 def go_back(self):
     if(self.offset > 0):
-        key = getAPI_g
-        send_url = ("http://api.ipstack.com/check?access_key=" + key)
+        key = getAPI_g()
+        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
         geo_req = requests.get(send_url)
         geo_json = json.loads(geo_req.text)
         latitude = geo_json['latitude']
