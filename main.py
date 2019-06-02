@@ -4,8 +4,10 @@ import sys
 from pprint import pprint
 import json
 import random
+
 from get_a import getAPI
-import func_app
+from func_app import locate , search_again , go_back
+
 import urllib3
 from time import sleep
 import codecs
@@ -56,91 +58,11 @@ class MainScreen(Screen):
     bobaimage = ObjectProperty(" ")
     current = ""
     def on_enter(self):
-        #url = 'https://ipinfo.io/'
-        #res = requests.get(url, auth=('user' , 'pass') , verify=False)
-        #data = res.json()
-        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
-        geo_req = requests.get(send_url)
-        geo_json = json.loads(geo_req.text)
-        latitude = geo_json['latitude']
-        longitude = geo_json['longitude']
-        user_city = geo_json['zip']
-
-        #user_city = data['postal']
-        offset = 0
-        self.offset = 0
-        shop = search(user_city , offset)
-        self.shop = shop
-        shop_name = shop[0]
-        shop_location = shop[1]
-        shop_phone = shop[2]
-        shop_review = shop[3]
-        shop_image = shop[4]
-        self.bobashop.text = shop_name
-        self.bobalocation.text = shop_location
-        self.bobaphone.text = shop_phone
-        self.bobareview.text = shop_review
-        print(self.offset)
-        self.bobaimage = shop_image
-
+        locate(self)
     def addSearch(self):
-        if(self.offset < 7):
-            #res = requests.get('https://ipinfo.io/')
-            #data = res.json()
-            #user_city = data['postal']
-            send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
-            geo_req = requests.get(send_url)
-            geo_json = json.loads(geo_req.text)
-            latitude = geo_json['latitude']
-            longitude = geo_json['longitude']
-            user_city = geo_json['zip']
-
-            self.offset += 1
-            self.shop = search(user_city , (self.offset))
-            shop = self.shop
-            shop_name = shop[0]
-            shop_location = shop[1]
-            shop_phone = shop[2]
-            shop_review = shop[3]
-            shop_image = shop[4]
-            self.bobashop.text = shop_name
-            self.bobalocation.text = shop_location
-            self.bobaphone.text = shop_phone
-            self.bobareview.text = shop_review
-            self.bobaimage = shop_image
-            print(self.offset)
-        elif(self.offset >= 7):
-            print(self.offset)
-
-
+        search_again(self)
     def subSearch(self):
-        if(self.offset > 0):
-            #res = requests.get('https://ipinfo.io/')
-            #data = res.json()
-            #user_city = data['postal']
-            send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
-            geo_req = requests.get(send_url)
-            geo_json = json.loads(geo_req.text)
-            latitude = geo_json['latitude']
-            longitude = geo_json['longitude']
-            user_city = geo_json['zip']
-            self.offset = self.offset - 1
-            self.shop = search(user_city , (self.offset))
-            shop = self.shop
-            shop_name = shop[0]
-            shop_location = shop[1]
-            shop_phone = shop[2]
-            shop_review = shop[3]
-            shop_image = shop[4]
-            self.bobashop.text = shop_name
-            self.bobalocation.text = shop_location
-            self.bobaphone.text = shop_phone
-            self.bobareview.text = shop_review
-            print(self.offset)
-            self.bobaimage = shop_image
-        elif(self.offset == 0):
-            print(self.offset)
-
+        go_back(self)
 
 
 

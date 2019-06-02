@@ -1,7 +1,7 @@
 import requests
 import json
 from get_a import getAPI
-#class function():
+
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
     API_KEY = getAPI()
@@ -24,36 +24,46 @@ def search(city , offset):
         image = (biz['image_url'])
         return [shop_name , shop_location , phone , review , image]
 
-    #@staticmethod
-def locate():
-    #res = requests.get('https://ipinfo.io/' , verify = False )
-    #data = res.json()
-    #user_city = data['postal']
-    user_city = "Murrieta"
-    offset = 0
-    self.offset = 0
-    shop = function.search(user_city , offset)
-    self.shop = shop
-    shop_name = shop[0]
-    shop_location = shop[1]
-    shop_phone = shop[2]
-    shop_review = shop[3]
-    shop_image = shop[4]
-    self.bobashop.text = shop_name
-    self.bobalocation.text = shop_location
-    self.bobaphone.text = shop_phone
-    self.bobareview.text = shop_review
-    print(self.offset)
-    self.bobaimage = shop_image
+def locate(self):
+        #url = 'https://ipinfo.io/'
+        #res = requests.get(url, auth=('user' , 'pass') , verify=False)
+        #data = res.json()
+        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
+        geo_req = requests.get(send_url)
+        geo_json = json.loads(geo_req.text)
+        latitude = geo_json['latitude']
+        longitude = geo_json['longitude']
+        user_city = geo_json['zip']
+
+        #user_city = data['postal']
+        offset = 0
+        self.offset = 0
+        shop = search(user_city , offset)
+        self.shop = shop
+        shop_name = shop[0]
+        shop_location = shop[1]
+        shop_phone = shop[2]
+        shop_review = shop[3]
+        shop_image = shop[4]
+        self.bobashop.text = shop_name
+        self.bobalocation.text = shop_location
+        self.bobaphone.text = shop_phone
+        self.bobareview.text = shop_review
+        print(self.offset)
+        self.bobaimage = shop_image
 
 
 def search_again(self):
     if(self.offset < 7):
-        res = requests.get('https://ipinfo.io/')
-        data = res.json()
-        user_city = data['postal']
+        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
+        geo_req = requests.get(send_url)
+        geo_json = json.loads(geo_req.text)
+        latitude = geo_json['latitude']
+        longitude = geo_json['longitude']
+        user_city = geo_json['zip']
+
         self.offset += 1
-        self.shop = function.search(user_city , (self.offset))
+        self.shop = search(user_city , (self.offset))
         shop = self.shop
         shop_name = shop[0]
         shop_location = shop[1]
@@ -71,11 +81,15 @@ def search_again(self):
 
 def go_back(self):
     if(self.offset > 0):
-        res = requests.get('https://ipinfo.io/')
-        data = res.json()
-        user_city = data['postal']
+        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
+        geo_req = requests.get(send_url)
+        geo_json = json.loads(geo_req.text)
+        latitude = geo_json['latitude']
+        longitude = geo_json['longitude']
+        user_city = geo_json['zip']
+
         self.offset = self.offset - 1
-        self.shop = function.search(user_city , (self.offset))
+        self.shop = search(user_city , (self.offset))
         shop = self.shop
         shop_name = shop[0]
         shop_location = shop[1]
