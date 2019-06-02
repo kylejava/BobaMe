@@ -30,7 +30,7 @@ def locate(self):
         #data = res.json()
 
         user_city = geocoder.ip('me')
-        
+
         #user_city = data['postal']
         offset = 0
         self.offset = 0
@@ -51,14 +51,14 @@ def locate(self):
 
 def search_again(self):
     if(self.offset < 7):
-        key = getAPI_g()
-        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-        geo_req = requests.get(send_url)
-        geo_json = json.loads(geo_req.text)
-        latitude = geo_json['latitude']
-        longitude = geo_json['longitude']
-        user_city = geo_json['zip']
-
+        #key = getAPI_g()
+        #send_url = ("http://api.ipstack.com/check?access_key="+str(key))
+        #geo_req = requests.get(send_url)
+        #geo_json = json.loads(geo_req.text)
+        #latitude = geo_json['latitude']
+        #longitude = geo_json['longitude']
+        #user_city = geo_json['zip']
+        user_city = geocoder.ip('me')
         self.offset += 1
         self.shop =search(user_city , (self.offset))
         shop = self.shop
@@ -78,13 +78,7 @@ def search_again(self):
 
 def go_back(self):
     if(self.offset > 0):
-        key = getAPI_g()
-        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-        geo_req = requests.get(send_url)
-        geo_json = json.loads(geo_req.text)
-        latitude = geo_json['latitude']
-        longitude = geo_json['longitude']
-        user_city = geo_json['zip']
+        user_city = geocoder.ip('me')
 
         self.offset = self.offset - 1
         self.shop = search(user_city , (self.offset))
