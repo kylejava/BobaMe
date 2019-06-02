@@ -5,7 +5,6 @@ from pprint import pprint
 import json
 import random
 
-from get_a import getAPI
 from func_app import locate , search_again , go_back
 
 import urllib3
@@ -22,29 +21,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty
 from kivy.uix.textinput import TextInput
 urllib3.disable_warnings()
-
-def search(city , offset):
-    buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
-    API_KEY = getAPI()
-    ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
-    HEADERS = {'Authorization': 'Bearer %s' % API_KEY}
-    PARAMETERS = {'term': 'boba',
-                    'limit': 1,
-                    'radius': 10000,
-                    'location': city,
-                    'offset': offset
-                    }
-    response = requests.get(url = ENDPOINT , params = PARAMETERS, headers = HEADERS)
-    buisness_data = response.json()
-
-    for biz in buisness_data['businesses']:
-        shop_name = (biz['name'])
-        shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
-        phone = (biz['phone'])
-        review = ((str(biz['rating'])) + (" Stars"))
-        image = (biz['image_url'])
-        return [shop_name , shop_location , phone , review , image]
-
 
 
 class OpenScreen(Screen):

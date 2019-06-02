@@ -1,10 +1,10 @@
 import requests
 import json
-from get_a import getAPI
+from get_a import getAPI_y , getAPI_g
 
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
-    API_KEY = getAPI()
+    API_KEY = getAPI_y()
     ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
     HEADERS = {'Authorization': 'Bearer %s' % API_KEY}
     PARAMETERS = {'term': 'boba',
@@ -28,7 +28,8 @@ def locate(self):
         #url = 'https://ipinfo.io/'
         #res = requests.get(url, auth=('user' , 'pass') , verify=False)
         #data = res.json()
-        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
+        key = getAPI_g
+        send_url = ("http://api.ipstack.com/check?access_key=" + str(key))
         geo_req = requests.get(send_url)
         geo_json = json.loads(geo_req.text)
         latitude = geo_json['latitude']
@@ -55,7 +56,9 @@ def locate(self):
 
 def search_again(self):
     if(self.offset < 7):
-        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
+        key = getAPI_g
+        send_url = ("http://api.ipstack.com/check?access_key=" + key)
+        print(send_url)
         geo_req = requests.get(send_url)
         geo_json = json.loads(geo_req.text)
         latitude = geo_json['latitude']
@@ -81,7 +84,8 @@ def search_again(self):
 
 def go_back(self):
     if(self.offset > 0):
-        send_url = "http://api.ipstack.com/check?access_key=f787f7960a63899a81ebae839b4f4903"
+        key = getAPI_g
+        send_url = ("http://api.ipstack.com/check?access_key=" + key)
         geo_req = requests.get(send_url)
         geo_json = json.loads(geo_req.text)
         latitude = geo_json['latitude']
