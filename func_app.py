@@ -1,7 +1,7 @@
 import requests
 import json
 from get_a import getAPI_g , getAPI_y
-
+import geocoder
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
     API_KEY = getAPI_y()
@@ -28,14 +28,9 @@ def locate(self):
         #url = 'https://ipinfo.io/'
         #res = requests.get(url, auth=('user' , 'pass') , verify=False)
         #data = res.json()
-        key = getAPI_g()
-        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-        geo_req = requests.get(send_url)
-        geo_json = json.loads(geo_req.text)
-        latitude = geo_json['latitude']
-        longitude = geo_json['longitude']
-        user_city = geo_json['zip']
 
+        user_city = geocoder.ip('me')
+        
         #user_city = data['postal']
         offset = 0
         self.offset = 0
