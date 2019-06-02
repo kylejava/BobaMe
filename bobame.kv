@@ -49,7 +49,7 @@ WindowManager:
     bobalocation: bobalocation
     bobaphone: bobaphone
     bobareview: bobareview
-    bobaimage: bobaimage
+    #bobaimage: bobaimage
 
     GridLayout:
         cols:1
@@ -73,7 +73,6 @@ WindowManager:
             font_name: './fonts/SR.ttf'
             text: "Back to HomeScreen"
             on_press:
-                opacity: .5
                 app.root.current = 'OpenScreen'
             size_hint: 0.5,0.12
             on_press:
@@ -86,32 +85,32 @@ WindowManager:
                 cols:1
                 Label:
                     font_name: './fonts/SR.ttf'
-                    font_size: 20
+                    font_size: 30
                     id: bobashop
                     text: " "
 
                 Label:
                     font_name: './fonts/SR.ttf'
-                    font_size: 20
+                    font_size: 30
                     id: bobalocation
                     text: " "
                 Label:
                     font_name: './fonts/SR.ttf'
-                    font_size: 20
+                    font_size: 30
                     id: bobaphone
                     text: " "
 
                 Label:
                     font_name: './fonts/SR.ttf'
-                    font_size: 20
+                    font_size: 30
                     id: bobareview
                     text: " "
 
-            GridLayout:
-                cols:1
-                AsyncImage:
-                    id:bobaimage
-                    source: str(root.bobaimage)
+            #GridLayout:
+            #    cols:1
+            #    AsyncImage:
+            #        id:bobaimage
+                    #source: (str(root.bobaimage))
 
 
         GridLayout:
