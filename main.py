@@ -4,18 +4,20 @@ import sys
 from pprint import pprint
 import json
 import random
-
+import os
+from kivy.base import runTouchApp
 from func_app import locate , search_again , go_back
 
 import urllib3
 from time import sleep
-import codecs
+from kivy.core.clipboard import Clipboard
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.core.window import Window
-from kivy.core.image import Image
+from kivy.properties import StringProperty
+from kivy.uix.image import AsyncImage
 from kivy.uix.screenmanager import ScreenManager , Screen
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty
@@ -31,7 +33,7 @@ class MainScreen(Screen):
     bobalocation = ObjectProperty(0)
     bobaphone = ObjectProperty(0)
     bobareview = ObjectProperty(0)
-    bobaimage = ObjectProperty(" ")
+    bobaimage = ObjectProperty("")
     current = ""
     def on_enter(self):
         locate(self)

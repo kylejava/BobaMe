@@ -35,7 +35,9 @@ def locate(self):
         latitude = geo_json['latitude']
         longitude = geo_json['longitude']
         user_city = geo_json['zip']
-
+        print(user_city)
+        print(latitude)
+        print(longitude)
         #user_city = data['postal']
         offset = 0
         self.offset = 0
@@ -52,7 +54,8 @@ def locate(self):
         self.bobareview.text = shop_review
         print(self.offset)
         self.bobaimage = shop_image
-
+        def change_image(self , shop_image):
+            self.bobaimage = shop_image
 
 def search_again(self):
     if(self.offset < 7):
