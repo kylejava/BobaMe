@@ -7,7 +7,8 @@ import random
 import os
 from kivy.base import runTouchApp
 from func_app import locate , search_again , go_back
-
+from kivy.uix.popup import Popup
+from kivy.uix.floatlayout import FloatLayout
 import urllib3
 from time import sleep
 from kivy.core.clipboard import Clipboard
@@ -42,6 +43,11 @@ class MainScreen(Screen):
     def subSearch(self):
         go_back(self)
 
+class popup(FloatLayout):
+    def show_popup():
+        show = popup()
+        popupWindow = Popup(title=" ",content=show , size_hint=(None,None), size = (400, 400))
+        popupWindow.open()
 
 
 class WindowManager(ScreenManager):
