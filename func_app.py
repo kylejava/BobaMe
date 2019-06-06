@@ -25,28 +25,11 @@ def search(city , offset):
         return [shop_name , shop_location , phone , review , image]
 
 def locate(self):
-    #url = 'https://ipinfo.io/'
-    #res = requests.get(url, auth=('user' , 'pass') , verify=False)
-    #data = res.json()
-    #key = getAPI_g()
-    #send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-    #geo_req = requests.get(send_url)
-    #geo_json = json.loads(geo_req.text)
-    #latitude = geo_json['latitude']
-    #longitude = geo_json['longitude']
-    #user_city = geo_json['zip']
-    #print(user_city)
-    #print(latitude)
-    #print(longitude)
-
-    def print_locations(**kwargs):
-        print 'lat: {lat}, lon: {lon}'.format(**kwargs)
-
-# private
-# later
-
-    #print(self.on_location)
-    user_city = configure(self, on_location = print_locations)
+    key = getAPI_g()
+    send_url = ("http://api.ipstack.com/check?access_key="+str(key))
+    geo_req = requests.get(send_url)
+    geo_json = json.loads(geo_req.text)
+    user_city = geo_json['zip']
     offset = 0
     self.offset = 0
     shop = search(user_city , offset)
