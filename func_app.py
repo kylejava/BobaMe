@@ -2,6 +2,8 @@ import requests
 import json
 from get_a import getAPI_g , getAPI_y
 from plyer import gps
+from test import instance
+
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
     API_KEY = getAPI_y()
@@ -25,11 +27,12 @@ def search(city , offset):
         return [shop_name , shop_location , phone , review , image]
 
 def locate(self):
-    key = getAPI_g()
-    send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-    geo_req = requests.get(send_url)
-    geo_json = json.loads(geo_req.text)
-    user_city = geo_json['zip']
+    #key = getAPI_g()
+    #send_url = ("http://api.ipstack.com/check?access_key="+str(key))
+    #geo_req = requests.get(send_url)
+    #geo_json = json.loads(geo_req.text)
+    #user_city = geo_json['zip']
+    user_city = self.on_location
     offset = 0
     self.offset = 0
     shop = search(user_city , offset)
