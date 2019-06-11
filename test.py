@@ -1,26 +1,50 @@
 from pyobjus import autoclass, protocol
-from pyobjus.dylib_manager import load_framework
-from plyer.facades import GPS
-from kivy.properties import StringProperty
-
-from kivy.lang import Builder
 from plyer import gps
-from kivy.app import App
-from kivy.properties import StringProperty
-from kivy.clock import Clock, mainthread
-load_framework('/System/Library/Frameworks/CoreLocation.framework')
-CLLocationManager = autoclass('CLLocationManager')
+class GPS(object):
+    '''
+    GPS facade.
+    '''
 
+    def configure(self, on_location, on_status=None):
+        '''
+        Configure the GPS object. This method should be called before
+        :meth:`start`.
+        :param on_location: Function to call when receiving a new location
+        :param on_status: Function to call when a status message is received
+        :type on_location: callable, multiples keys/value will be passed.
+        :type on_status: callable, args are "message-type", "status"
+        .. warning::
+            The `on_location` and `on_status` callables might be called from
+            another thread than the thread used for creating the GPS object.
+        '''
+        self.on_location = on_location
+        self.on_status = on_status
+        self._configure()
 
+    def start(self, minTime=1000, minDistance=1):
+        '''
+        Start the GPS location updates.
+        Expects 2 parameters:
+            minTime: milliseconds.  (float)
+            minDistance: meters. (float)
+        '''
+        self._start(minTime=minTime, minDistance=minDistance)
 
-def build(self):
-    try:
-        gps.configure(on_location=self.on_location,
-                      on_status=self.on_status)
-    except NotImplementedError:
-        import traceback
-        traceback.print_exc()
-        self.gps_status = 'GPS is not implemented for your platform'
-    return on_location
-x = build(self)
-print(x)
+    def stop(self):
+        '''
+        Stop the GPS location updates.
+        '''
+        self._stop()
+
+    # private
+
+    def _configure(self):
+        raise NotImplementedError()
+
+    def _start(self, **kwargs):
+        raise NotImplementedError()
+
+    def _stop(self):
+        raise NotImplementedError()
+
+GPS.configure(self, on_location, on_status=None)
