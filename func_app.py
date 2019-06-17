@@ -2,7 +2,7 @@ import requests
 import json
 from get_a import getAPI_g , getAPI_y
 from plyer import gps
-from test import instance
+from test import get_loc
 
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
@@ -32,7 +32,7 @@ def locate(self):
     #geo_req = requests.get(send_url)
     #geo_json = json.loads(geo_req.text)
     #user_city = geo_json['zip']
-    user_city = self.on_location
+    user_city = get_loc()
     offset = 0
     self.offset = 0
     shop = search(user_city , offset)
@@ -54,14 +54,9 @@ def locate(self):
 
 def search_again(self):
     if(self.offset < 7):
-        key = getAPI_g()
-        send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-        geo_req = requests.get(send_url)
-        geo_json = json.loads(geo_req.text)
-        latitude = geo_json['latitude']
-        longitude = geo_json['longitude']
-        user_city = geo_json['zip']
-
+        url = requests.get('https://geoipify.whoisxmlapi.com/api/v1?apiKey=at_JJ2zyiDJqOnVLxqEaHVKfTggXeJm0')
+        json = json.loads(url.text)
+        user_city = (json['location']['postalCode'])
         self.offset += 1
         self.shop =search(user_city , (self.offset))
         shop = self.shop
@@ -88,7 +83,9 @@ def go_back(self):
         #latitude = geo_json['latitude']
         #longitude = geo_json['longitude']
         #user_city = geo_json['zip']
-
+        url = requests.get('https://geoipify.whoisxmlapi.com/api/v1?apiKey=at_JJ2zyiDJqOnVLxqEaHVKfTggXeJm0')
+        json = json.loads(url.text)
+        user_city = (json['location']['postalCode'])
         self.offset = self.offset - 1
         self.shop = search(user_city , (self.offset))
         shop = self.shop

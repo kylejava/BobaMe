@@ -1,50 +1,39 @@
-from pyobjus import autoclass, protocol
+
 from plyer import gps
-class GPS(object):
-    '''
-    GPS facade.
-    '''
+class gps():
+    def build(self):
 
-    def configure(self, on_location, on_status=None):
-        '''
-        Configure the GPS object. This method should be called before
-        :meth:`start`.
-        :param on_location: Function to call when receiving a new location
-        :param on_status: Function to call when a status message is received
-        :type on_location: callable, multiples keys/value will be passed.
-        :type on_status: callable, args are "message-type", "status"
-        .. warning::
-            The `on_location` and `on_status` callables might be called from
-            another thread than the thread used for creating the GPS object.
-        '''
-        self.on_location = on_location
-        self.on_status = on_status
-        self._configure()
+        gps.configure(on_location=self.on_location,
+                    on_status=self.on_status)
 
-    def start(self, minTime=1000, minDistance=1):
-        '''
-        Start the GPS location updates.
-        Expects 2 parameters:
-            minTime: milliseconds.  (float)
-            minDistance: meters. (float)
-        '''
-        self._start(minTime=minTime, minDistance=minDistance)
+    def start(self, minTime, minDistance):
+        gps.start(minTime, minDistance)
 
     def stop(self):
-        '''
-        Stop the GPS location updates.
-        '''
-        self._stop()
+        gps.stop()
 
-    # private
 
-    def _configure(self):
-        raise NotImplementedError()
+    def on_location(self, **kwargs):
+        print kwargs
+        self.gps_location = '\n'.join(['{}={}'.format(k, v) for k, v in kwargs.items()])
+        print self.gps_location
 
-    def _start(self, **kwargs):
-        raise NotImplementedError()
 
-    def _stop(self):
-        raise NotImplementedError()
+    def on_status(self, stype, status):
+        self.gps_status = 'type={}\n{}'.format(stype, status)
 
-GPS.configure(self, on_location, on_status=None)
+    def on_pause(self):
+        gps.stop()
+        return True
+
+    def on_resume(self):
+        gps.start(1000, 0)
+        pass
+    def show(self):
+        gps_location= self.gps_location
+        print(gps_location)
+
+
+def get_loc():
+    x = gps()
+    x.on_location()
