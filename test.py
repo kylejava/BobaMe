@@ -1,5 +1,5 @@
 import requests
-import json
-key = 'AIzaSyC0MF3ows--0wDHoelaabKb2fR8eE5qts0'
-json = requests.get('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC0MF3ows--0wDHoelaabKb2fR8eE5qts0').json()
-print(json)
+
+params = {"api-key": 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
+json = requests.get('https://api.ipdata.co', params=params).json()
+print(json['postal'])

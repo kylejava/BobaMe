@@ -3,14 +3,10 @@ import requests
 import json
 from get_a import getAPI_g , getAPI_y
 from plyer import gps
-from pyobjus import autoclass, protocol
-from pyobjus.dylib_manager import load_framework
 from plyer.facades import GPS
 from kivy.clock import Clock, mainthread
 
 
-load_framework('/System/Library/Frameworks/CoreLocation.framework')
-CLLocationManager = autoclass('CLLocationManager')
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
     API_KEY = getAPI_y()
@@ -67,9 +63,9 @@ def locate(self):
 
 def search_again(self):
     if(self.offset < 7):
-        url = requests.get('https://geoipify.whoisxmlapi.com/api/v1?apiKey=at_JJ2zyiDJqOnVLxqEaHVKfTggXeJm0')
-        json = json.loads(url.text)
-        user_city = (json['location']['postalCode'])
+        params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
+        json = requests.get('https://api.ipdata.co', params=params).json()
+        user_city = json['postal']
         self.offset += 1
         self.shop =search(user_city , (self.offset))
         shop = self.shop
@@ -98,9 +94,9 @@ def go_back(self):
         #latitude = geo_json['latitude']
         #longitude = geo_json['longitude']
         #user_city = geo_json['zip']
-        url = requests.get('https://geoipify.whoisxmlapi.com/api/v1?apiKey=at_JJ2zyiDJqOnVLxqEaHVKfTggXeJm0')
-        json = json.loads(url.text)
-        user_city = (json['location']['postalCode'])
+        params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
+        json = requests.get('https://api.ipdata.co', params=params).json()
+        user_city = json['postal']
         self.offset = self.offset - 1
         self.shop = search(user_city , (self.offset))
         shop = self.shop

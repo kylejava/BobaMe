@@ -23,10 +23,7 @@ from kivy.uix.screenmanager import ScreenManager , Screen
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty
 from kivy.uix.textinput import TextInput
-from pyobjus import autoclass, protocol
-from pyobjus.dylib_manager import load_framework
-from plyer.facades import GPS
-from test import IosGPS
+
 urllib3.disable_warnings()
 
 
