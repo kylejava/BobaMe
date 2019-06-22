@@ -1,9 +1,16 @@
 import requests
+
 import json
 from get_a import getAPI_g , getAPI_y
 from plyer import gps
-from test import get_loc
+from pyobjus import autoclass, protocol
+from pyobjus.dylib_manager import load_framework
+from plyer.facades import GPS
+from kivy.clock import Clock, mainthread
 
+
+load_framework('/System/Library/Frameworks/CoreLocation.framework')
+CLLocationManager = autoclass('CLLocationManager')
 def search(city , offset):
     buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
     API_KEY = getAPI_y()
@@ -26,13 +33,19 @@ def search(city , offset):
         image = (biz['image_url'])
         return [shop_name , shop_location , phone , review , image]
 
+
+
 def locate(self):
     #key = getAPI_g()
     #send_url = ("http://api.ipstack.com/check?access_key="+str(key))
     #geo_req = requests.get(send_url)
     #geo_json = json.loads(geo_req.text)
     #user_city = geo_json['zip']
-    user_city = get_loc()
+
+
+    params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
+    json = requests.get('https://api.ipdata.co', params=params).json()
+    user_city = json['postal']
     offset = 0
     self.offset = 0
     shop = search(user_city , offset)
@@ -73,6 +86,8 @@ def search_again(self):
         print(self.offset)
     elif(self.offset >= 7):
         print(self.offset)
+
+
 
 def go_back(self):
     if(self.offset > 0):
