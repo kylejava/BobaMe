@@ -5,6 +5,8 @@ from get_a import getAPI_g , getAPI_y
 from plyer import gps
 from plyer.facades import GPS
 from kivy.clock import Clock, mainthread
+import ssl
+ssl.match_hostname = lambda cert, hostname: True
 
 
 def search(city , offset):
@@ -40,7 +42,7 @@ def locate(self):
 
 
     params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
-    json = requests.get('https://api.ipdata.co', params=params).json()
+    json = requests.get('https://api.ipdata.co?api-key=a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798' , verify = False).json()
     user_city = json['postal']
     offset = 0
     self.offset = 0
@@ -64,7 +66,7 @@ def locate(self):
 def search_again(self):
     if(self.offset < 7):
         params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
-        json = requests.get('https://api.ipdata.co', params=params).json()
+        json = requests.get('https://api.ipdata.co?api-key=a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798' , verify = False).json()
         user_city = json['postal']
         self.offset += 1
         self.shop =search(user_city , (self.offset))
@@ -95,7 +97,7 @@ def go_back(self):
         #longitude = geo_json['longitude']
         #user_city = geo_json['zip']
         params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
-        json = requests.get('https://api.ipdata.co', params=params).json()
+        json = requests.get('https://api.ipdata.co?api-key=a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798' , verify = False).json()
         user_city = json['postal']
         self.offset = self.offset - 1
         self.shop = search(user_city , (self.offset))
