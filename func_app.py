@@ -22,7 +22,7 @@ def search(city , offset):
                     }
     response = requests.get(url = ENDPOINT , params = PARAMETERS, headers = HEADERS)
     buisness_data = response.json()
-
+    
     for biz in buisness_data['businesses']:
         shop_name = (biz['name'])
         shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
