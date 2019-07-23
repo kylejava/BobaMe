@@ -6,6 +6,7 @@ WindowManager:
 
 <OpenScreen>:
     name: "OpenScreen"
+    user_location:user_location
     GridLayout:
         cols:1
         GridLayout:
@@ -19,8 +20,14 @@ WindowManager:
                 Label:
                     font_name: './fonts/SR.ttf'
                     font_size: 30
-                    text: "Press Search To Find\nBoba Shops Near You!"
+                    text: "Please enter your zip code or city and\nstate to find boba shops in that location!"
                     size: self.texture_size
+                TextInput:
+                    id: user_location
+                    font_name: './fonts/SR.ttf'
+                    font_size: 30
+                    multiline: False
+                    size_hint: (.2, None)
             Button:
                 size_hint: 0.5,0.12
                 background_color:(0 , 0, 0 ,0)

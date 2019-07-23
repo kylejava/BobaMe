@@ -28,7 +28,11 @@ urllib3.disable_warnings()
 
 
 class OpenScreen(Screen):
-    pass
+    user_location = ObjectProperty(0)
+    def build(self):
+        user_location = TextInput(multiline = False)
+        self.user_location = user_location
+        print(self.user_location)
 
 class MainScreen(Screen):
     bobashop = ObjectProperty(0)
@@ -39,6 +43,8 @@ class MainScreen(Screen):
     current = ""
     def on_enter(self):
         locate(self)
+        x = self.manager.get_screen("OpenScreen").user_location.text
+        print(x)
     def addSearch(self):
         search_again(self)
     def subSearch(self):
