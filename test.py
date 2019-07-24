@@ -12,11 +12,13 @@ def search(city , offset):
     response = requests.get(url = ENDPOINT , params = PARAMETERS, headers = HEADERS)
 
     buisness_data = response.json()
-
+    print(buisness_data)
     if ('error') in buisness_data:
         x = "Invalid"
         return (x)
-
+    elif buisness_data['total'] == 0:
+        x = "Invalid"
+        return (x)
     else:
         for biz in buisness_data['businesses']:
             shop_name = (biz['name'])

@@ -32,7 +32,7 @@ class OpenScreen(Screen):
     def build(self):
         user_location = TextInput(multiline = False)
         self.user_location = user_location
-        print(self.user_location)
+
 
 class MainScreen(Screen):
     bobashop = ObjectProperty(0)
@@ -42,13 +42,14 @@ class MainScreen(Screen):
     bobaimage = ObjectProperty("")
     current = ""
     def on_enter(self):
-        locate(self)
-        x = self.manager.get_screen("OpenScreen").user_location.text
-        print(x)
+        user_city  = self.manager.get_screen("OpenScreen").user_location.text
+        locate(self, user_city)
     def addSearch(self):
-        search_again(self)
+        user_city  = self.manager.get_screen("OpenScreen").user_location.text
+        search_again(self , user_city)
     def subSearch(self):
-        go_back(self)
+        user_city  = self.manager.get_screen("OpenScreen").user_location.text
+        go_back(self, user_city)
 
 class popup(FloatLayout):
     def show_popup():

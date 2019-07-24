@@ -22,7 +22,12 @@ def search(city , offset):
                     }
     response = requests.get(url = ENDPOINT , params = PARAMETERS, headers = HEADERS)
     buisness_data = response.json()
-    
+    if('error') in buisness_data:
+        x = "Invalid"
+        return (x)
+    elif buisness_data['total'] == 0:
+        x = "Invalid"
+        return (x)
     for biz in buisness_data['businesses']:
         shop_name = (biz['name'])
         shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
@@ -33,7 +38,7 @@ def search(city , offset):
 
 
 
-def locate(self):
+def locate(self , user_city):
     #key = getAPI_g()
     #send_url = ("http://api.ipstack.com/check?access_key="+str(key))
     #geo_req = requests.get(send_url)
@@ -41,12 +46,20 @@ def locate(self):
     #user_city = geo_json['zip']
 
 
-    params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
-    json = requests.get('https://api.ipdata.co?api-key=a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798' , verify = False).json()
-    user_city = json['postal']
+
     offset = 0
     self.offset = 0
     shop = search(user_city , offset)
+    if(shop == "Invalid"):
+        print("Go Back and input again")
+        offset = 0
+        self.offset = 0
+        shop = search(user_city , offset)
+        if(shop == "Invalid"):
+            self.manager.current = 'OpenScreen'
+            self.manager.transition.direction = "right"
+
+
     self.shop = shop
     shop_name = shop[0]
     shop_location = shop[1]
@@ -63,13 +76,17 @@ def locate(self):
         self.bobaimage = shop_image
 
 
-def search_again(self):
+def search_again(self, user_city):
     if(self.offset < 7):
-        params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
-        json = requests.get('https://api.ipdata.co?api-key=a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798' , verify = False).json()
-        user_city = json['postal']
         self.offset += 1
         self.shop =search(user_city , (self.offset))
+        if(self.shop == "Invalid"):
+            print("Go Back and input again")
+            self.shop = search(user_city , (self.offset))
+            if(shop == "Invalid"):
+                print("No More Boba Shops To Preview, Going Back to Homescreen")
+                self.manager.current = 'OpenScreen'
+                self.manager.transition.direction = "right"
         shop = self.shop
         shop_name = shop[0]
         shop_location = shop[1]
@@ -87,18 +104,9 @@ def search_again(self):
 
 
 
-def go_back(self):
+def go_back(self, user_city):
     if(self.offset > 0):
-        #key = getAPI_g()
-        #send_url = ("http://api.ipstack.com/check?access_key="+str(key))
-        #geo_req = requests.get(send_url)
-        #geo_json = json.loads(geo_req.text)
-        #latitude = geo_json['latitude']
-        #longitude = geo_json['longitude']
-        #user_city = geo_json['zip']
-        params = {'api-key': 'a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798'}
-        json = requests.get('https://api.ipdata.co?api-key=a68a9652ad250438b0dba34249662d66ca13cdde549431e6da0c5798' , verify = False).json()
-        user_city = json['postal']
+
         self.offset = self.offset - 1
         self.shop = search(user_city , (self.offset))
         shop = self.shop
