@@ -22,11 +22,12 @@ def search(city , offset):
                     }
     response = requests.get(url = ENDPOINT , params = PARAMETERS, headers = HEADERS)
     buisness_data = response.json()
+    print(buisness_data)
     if('error') in buisness_data:
         x = "Invalid"
         return (x)
-    elif buisness_data['total'] == 0:
-        x = "Invalid"
+    elif not buisness_data['businesses']:
+        x = "None"
         return (x)
     for biz in buisness_data['businesses']:
         shop_name = (biz['name'])
@@ -83,7 +84,7 @@ def search_again(self, user_city):
         if(self.shop == "Invalid"):
             print("Go Back and input again")
             self.shop = search(user_city , (self.offset))
-            if(shop == "Invalid"):
+            if(self.shop == "None"):
                 print("No More Boba Shops To Preview, Going Back to Homescreen")
                 self.manager.current = 'OpenScreen'
                 self.manager.transition.direction = "right"

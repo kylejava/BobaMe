@@ -20,14 +20,21 @@ WindowManager:
                 Label:
                     font_name: './fonts/SR.ttf'
                     font_size: 30
-                    text: "Please enter your zip code or city and\nstate to find boba shops in that location!"
+                    text: "Find New Boba Shops in your area by\nentering your zip code or your state and city!"
+                    size: self.texture_size
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    font_size: 23
+                    text: "(For more accurate results please input your zip code)"
                     size: self.texture_size
                 TextInput:
                     id: user_location
                     font_name: './fonts/SR.ttf'
-                    font_size: 30
                     multiline: False
-                    size_hint: (.2, None)
+                    #size_hint: (.2, None)
+                    size_hint_y: None
+                    height: 100
+                    font_size: self.height - 40
             Button:
                 size_hint: 0.5,0.12
                 background_color:(0 , 0, 0 ,0)
@@ -61,6 +68,7 @@ WindowManager:
     bobaimage: bobaimage
 
     AsyncImage:
+        nocache: True
         id:bobaimage
         source: (str(root.bobaimage))
         opacity: 0.2
@@ -114,6 +122,7 @@ WindowManager:
                     text: " "
 
                 Label:
+                    
                     font_name: './fonts/SR.ttf'
                     font_size: 30
                     id: bobareview
@@ -190,8 +199,8 @@ WindowManager:
 
 
 
-<popup>:
+<popup@popup>:
     Label:
         text: "Location Copied Onto Clipboard"
-        size_hint: 0.6 , 0.2
+        #size_hint: 0.6 , 0.2
         pos_hint:{"x":0.2 ,"top":1}

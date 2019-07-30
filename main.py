@@ -1,3 +1,7 @@
+#BobaMe
+#App began deelopment in 5/22/2019
+
+
 import kivy
 import requests
 import sys
@@ -38,7 +42,7 @@ class MainScreen(Screen):
     bobashop = ObjectProperty(0)
     bobalocation = ObjectProperty(0)
     bobaphone = ObjectProperty(0)
-    bobareview = ObjectProperty(0)
+    bobareview = ObjectProperty("")
     bobaimage = ObjectProperty("")
     current = ""
     def on_enter(self):
