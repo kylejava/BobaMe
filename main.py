@@ -56,11 +56,17 @@ class MainScreen(Screen):
         go_back(self, user_city)
 
 class popup(FloatLayout):
-    def show_popup():
-        show = popup()
-        popupWindow = Popup(title=" ",content=show , size_hint=(None,None), size = (400, 400))
-        popupWindow.open()
+    pass
 
+def show_popup():
+    show = popup()
+    popupWindow = Popup(title="Error",content=show , size_hint=(None,None), size = (400, 400))
+    popupWindow.open()
+
+class clipboard_copy():
+    clip = ObjectProperty(0)
+    def btn(self):
+        show_popup()
 
 class WindowManager(ScreenManager):
     pass

@@ -33,7 +33,7 @@ def search(city , offset):
         shop_name = (biz['name'])
         shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
         phone = (biz['phone'])
-        review = ((str(biz['rating'])) + (" Stars"))
+        review = ((str(biz['rating']) + (" Stars")))
         image = (biz['image_url'])
         return [shop_name , shop_location , phone , review , image]
 
@@ -98,6 +98,7 @@ def search_again(self, user_city):
         self.bobalocation.text = shop_location
         self.bobaphone.text = shop_phone
         self.bobareview.text = shop_review
+        print(shop_review)
         self.bobaimage = shop_image
         print(self.offset)
     elif(self.offset >= 7):

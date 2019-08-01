@@ -66,7 +66,7 @@ WindowManager:
     bobaphone: bobaphone
     bobareview: bobareview
     bobaimage: bobaimage
-
+    clip:clip
     AsyncImage:
         nocache: True
         id:bobaimage
@@ -122,7 +122,7 @@ WindowManager:
                     text: " "
 
                 Label:
-                    
+
                     font_name: './fonts/SR.ttf'
                     font_size: 30
                     id: bobareview
@@ -156,7 +156,7 @@ WindowManager:
                 on_release: root.subSearch()
 
             Button:
-
+                id:clip
                 text: "Copy Address"
                 size_hint: 0.7,0.22
                 background_color:(0 , 0, 0 ,0)
@@ -175,7 +175,7 @@ WindowManager:
                         radius: self.border_radius
 
                 on_press: Clipboard.copy(root.bobalocation.text)
-                on_release: popup.show_popup()
+                on_release: root.clipboard_copy.btn()
 
             Button:
                 size_hint: 0.5,0.12
@@ -199,8 +199,8 @@ WindowManager:
 
 
 
-<popup@popup>:
+<popup>:
     Label:
         text: "Location Copied Onto Clipboard"
-        #size_hint: 0.6 , 0.2
+        size_hint: 0.6 , 0.2
         pos_hint:{"x":0.2 ,"top":1}
