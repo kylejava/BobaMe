@@ -42,7 +42,7 @@ class MainScreen(Screen):
     bobashop = ObjectProperty(0)
     bobalocation = ObjectProperty(0)
     bobaphone = ObjectProperty(0)
-    bobareview = ObjectProperty("")
+    bobareview = ObjectProperty(0)
     bobaimage = ObjectProperty("")
     current = ""
     def on_enter(self):

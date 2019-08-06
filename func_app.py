@@ -31,7 +31,7 @@ def search(city , offset):
         return (x)
     for biz in buisness_data['businesses']:
         shop_name = (biz['name'])
-        shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
+        shop_location = ((str(biz['location']['address1'])) +(" ")+"\n "+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
         phone = (biz['phone'])
         review = ((str(biz['rating']) + (" Stars")))
         image = (biz['image_url'])
@@ -73,21 +73,20 @@ def locate(self , user_city):
     self.bobareview.text = shop_review
     print(self.offset)
     self.bobaimage = shop_image
-    def change_image(self , shop_image):
-        self.bobaimage = shop_image
+
 
 
 def search_again(self, user_city):
     if(self.offset < 7):
         self.offset += 1
         self.shop =search(user_city , (self.offset))
-        if(self.shop == "Invalid"):
-            print("Go Back and input again")
-            self.shop = search(user_city , (self.offset))
-            if(self.shop == "None"):
-                print("No More Boba Shops To Preview, Going Back to Homescreen")
-                self.manager.current = 'OpenScreen'
-                self.manager.transition.direction = "right"
+    #    if(self.shop == "Invalid"):
+    #        print("Go Back and input again")
+    #        self.shop = search(user_city , (self.offset))
+        if(self.shop == "None"):
+            print("No More Boba Shops To Preview, Going Back to Homescreen")
+            self.manager.current = 'OpenScreen'
+            self.manager.transition.direction = "right"
         shop = self.shop
         shop_name = shop[0]
         shop_location = shop[1]
