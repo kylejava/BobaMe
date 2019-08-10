@@ -12,7 +12,7 @@ import random
 import os
 from kivy.base import runTouchApp
 from func_app import locate , search_again , go_back
-from kivy.uix.popup import Popup
+
 from kivy.uix.floatlayout import FloatLayout
 import urllib3
 from time import sleep
@@ -60,19 +60,6 @@ class MainScreen(Screen):
         url = 'https://www.google.com/maps/place/'
         location = self.bobalocation.text
         webbrowser.open((url)+(location))
-    def popup(self):
-        show = popup()
-        #popupWindow = popup(title="Error",content=show , size_hint=(None,None), size = (400, 400))
-        #popupWindow.open()
-        show.open()
-
-class popup(Popup):
-    pass
-
-#def show_popup():
-#    show = popup()
-#    popupWindow = Popup(title="Error",content=show , size_hint=(None,None), size = (400, 400))
-#    popupWindow.open()
 
 
 

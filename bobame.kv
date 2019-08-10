@@ -1,5 +1,5 @@
 #:import Clipboard kivy.core.clipboard.Clipboard
-#:import popup main.popup
+
 WindowManager:
     OpenScreen:
     MainScreen:
@@ -174,8 +174,6 @@ WindowManager:
                         pos:self.pos
                         radius: self.border_radius
 
-                #on_press: Clipboard.copy(root.bobalocation.text)
-                #on_release: root.show_popup()
                 on_press: root.directions()
 
             Button:
@@ -197,16 +195,3 @@ WindowManager:
                 text: "More"
                 size_hint: 0.5, 0.12
                 on_release: root.addSearch()
-
-
-
-<popup>:
-    id: pop
-    auto_dismiss: False
-    text: "Location Copied Onto Clipboard"
-    size_hint: 0.6 , 0.2
-    title: "Test"
-    #pos_hint:{"x":0.2 ,"top":1}
-    Button:
-        text:'okay'
-        on_press: pop.dismiss()
