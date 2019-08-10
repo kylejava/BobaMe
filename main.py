@@ -1,10 +1,11 @@
 #BobaMe
-#App began deelopment in 5/22/2019
+#App began development in 5/22/2019
 
 
 import kivy
 import requests
 import sys
+import webbrowser
 from pprint import pprint
 import json
 import random
@@ -55,18 +56,25 @@ class MainScreen(Screen):
         user_city  = self.manager.get_screen("OpenScreen").user_location.text
         go_back(self, user_city)
 
-class popup(FloatLayout):
+    def directions(self):
+        url = 'https://www.google.com/maps/place/'
+        location = self.bobalocation.text
+        webbrowser.open((url)+(location))
+    def popup(self):
+        show = popup()
+        #popupWindow = popup(title="Error",content=show , size_hint=(None,None), size = (400, 400))
+        #popupWindow.open()
+        show.open()
+
+class popup(Popup):
     pass
 
-def show_popup():
-    show = popup()
-    popupWindow = Popup(title="Error",content=show , size_hint=(None,None), size = (400, 400))
-    popupWindow.open()
+#def show_popup():
+#    show = popup()
+#    popupWindow = Popup(title="Error",content=show , size_hint=(None,None), size = (400, 400))
+#    popupWindow.open()
 
-class clipboard_copy():
-    clip = ObjectProperty(0)
-    def btn(self):
-        show_popup()
+
 
 class WindowManager(ScreenManager):
     pass
