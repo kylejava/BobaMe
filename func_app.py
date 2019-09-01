@@ -77,16 +77,17 @@ def locate(self , user_city):
 
 
 def search_again(self, user_city):
+    self.bobareview.text = " "
     if(self.offset < 7):
         self.offset += 1
-        self.shop =search(user_city , (self.offset))
+        self.shop = search(user_city , (self.offset))
     #    if(self.shop == "Invalid"):
     #        print("Go Back and input again")
     #        self.shop = search(user_city , (self.offset))
-        if(self.shop == "None"):
-            print("No More Boba Shops To Preview, Going Back to Homescreen")
-            self.manager.current = 'OpenScreen'
-            self.manager.transition.direction = "right"
+    #    if(self.shop == "None"):
+    #        print("No More Boba Shops To Preview, Going Back to Homescreen")
+    #        self.manager.current = 'OpenScreen'
+    #        self.manager.transition.direction = "right"
         shop = self.shop
         shop_name = shop[0]
         shop_location = shop[1]

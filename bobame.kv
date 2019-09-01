@@ -17,20 +17,19 @@ WindowManager:
                     font_name: './fonts/SR-BOLD.ttf'
                     font_size: 55
                     text: "BobaMe!"
-                Label:
-                    font_name: './fonts/SR.ttf'
-                    font_size: 30
-                    text: "Find New Boba Shops in your area by\nentering your zip code or your state and city!"
-                    size: self.texture_size
+            Label:
+                font_name: './fonts/SR.ttf'
+                font_size: 30
+                text: "Find New Boba Shops in your area by\nentering your zip code or your state and city!"
 
-                TextInput:
-                    id: user_location
-                    font_name: './fonts/SR.ttf'
-                    multiline: False
-                    #size_hint: (.2, None)
-                    size_hint_y: None
-                    height: 100
-                    font_size: self.height - 40
+            TextInput:
+                id: user_location
+                font_name: './fonts/SR.ttf'
+                multiline: False
+                #size_hint: (.2, None)
+                size_hint_y: None
+                height: 100
+                font_size: self.height - 40
             Button:
                 size_hint: 0.5,0.12
                 background_color:(0 , 0, 0 ,0)
