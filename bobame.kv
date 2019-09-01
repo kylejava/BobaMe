@@ -16,11 +16,13 @@ WindowManager:
                 Label:
                     font_name: './fonts/SR-BOLD.ttf'
                     font_size: 55
+                    size_hint_y: None
                     text: "BobaMe!"
             Label:
                 font_name: './fonts/SR.ttf'
+                size_hint_y: 500
                 font_size: 30
-                text: "Find New Boba Shops in your area by\nentering your zip code or your state and city!"
+                text: "     Find New Boba Shops in your area by\nentering your zip code or your state and city!"
 
             TextInput:
                 id: user_location
@@ -29,28 +31,31 @@ WindowManager:
                 #size_hint: (.2, None)
                 size_hint_y: None
                 height: 100
+                width: 10
                 font_size: self.height - 40
-            Button:
-                size_hint: 0.5,0.12
-                background_color:(0 , 0, 0 ,0)
-                size: self.texture_size
-                background_normal:''
-                font_size: 42
-                font_name: './fonts/SR.ttf'
-                back_color:(.7 , .8 , 1.0 , 1.0)
-                border_radius:[30]
-                canvas.before:
-                    Color:
-                        rgba: self.back_color
-                    RoundedRectangle:
-                        size: self.size
-                        pos:self.pos
-                        radius: self.border_radius
 
-                text:"Search"
-                on_press: app.root.current = 'InputScreen'
-                on_press:
-                    root.manager.transition.direction = "left"
+        Button:
+            size_hint: 0.5,0.12
+            background_color:(0 , 0, 0 ,0)
+
+            background_normal:''
+            font_size: 42
+            font_name: './fonts/SR.ttf'
+            back_color:(.7 , .8 , 1.0 , 1.0)
+            canvas.before:
+                Color:
+                    rgba: self.back_color
+                Rectangle:
+
+                    size: 600, 54
+
+                    pos: (90 , 5)
+
+
+            text:"Search"
+            on_press: app.root.current = 'InputScreen'
+            on_press:
+                root.manager.transition.direction = "left"
 
 
 <MainScreen>:
