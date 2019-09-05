@@ -11,7 +11,7 @@ import json
 import random
 import os
 from kivy.base import runTouchApp
-from func_app import locate , search_again , go_back
+from func_app import locate , search_again 
 
 from kivy.uix.floatlayout import FloatLayout
 import urllib3
@@ -52,9 +52,6 @@ class MainScreen(Screen):
     def addSearch(self):
         user_city  = self.manager.get_screen("OpenScreen").user_location.text
         search_again(self , user_city)
-    def subSearch(self):
-        user_city  = self.manager.get_screen("OpenScreen").user_location.text
-        go_back(self, user_city)
 
     def directions(self):
         url = 'https://www.google.com/maps/place/'

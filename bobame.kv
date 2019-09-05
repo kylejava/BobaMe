@@ -33,6 +33,12 @@ WindowManager:
                 height: 100
                 width: 10
                 font_size: self.height - 40
+                canvas.before:
+                    Rectangle:
+
+                        size: 600, 54
+
+                        pos: (90 , 5)
 
         Button:
             size_hint: 0.5,0.12
@@ -82,14 +88,14 @@ WindowManager:
             font_size: 35
             font_name: './fonts/SR.ttf'
             back_color:(.7 , .8 , 1.0 , 1.0)
-            border_radius:[25]
+
             canvas.before:
                 Color:
                     rgba: self.back_color
-                RoundedRectangle:
+                Rectangle:
                     size: self.size
                     pos:self.pos
-                    radius: self.border_radius
+
 
             font_name: './fonts/SR.ttf'
             text: "Back to HomeScreen"
@@ -133,46 +139,24 @@ WindowManager:
 
 
         GridLayout:
-            cols:3
+            cols:2
             size_hint: 0.5,0.12
-            Button:
-                size_hint: 0.5,0.12
-                background_color:(0 , 0, 0 ,0)
-                background_normal:''
-                font_size: 30
-                font_name: './fonts/SR.ttf'
-                back_color:(.7 , .8 , 1.0 , 1.0)
-                border_radius:[35]
-                canvas.before:
-                    Color:
-                        rgba: self.back_color
-                    RoundedRectangle:
-                        size: self.size
-                        pos:self.pos
-                        radius: self.border_radius
-
-                text: "Go Back"
-                size_hint: 0.5, 0.12
-                on_release: root.subSearch()
-
             Button:
 
                 text: "Take Me There!"
-                size_hint: 0.7,0.22
+                size_hint: 0.5,0.22
                 background_color:(0 , 0, 0 ,0)
                 background_normal:''
                 font_size: 30
                 font_name: './fonts/SR.ttf'
                 back_color:(.7 , .8 , 1.0 , 1.0)
 
-                border_radius:[35]
                 canvas.before:
                     Color:
                         rgba: self.back_color
-                    RoundedRectangle:
+                    Rectangle:
                         size: self.size
                         pos:self.pos
-                        radius: self.border_radius
 
                 on_press: root.directions()
 
@@ -183,15 +167,15 @@ WindowManager:
                 font_size: 30
                 font_name: './fonts/SR.ttf'
                 back_color:(.7 , .8 , 1.0 , 1.0)
-                border_radius:[35]
+
                 canvas.before:
                     Color:
                         rgba: self.back_color
-                    RoundedRectangle:
+                    Rectangle:
                         size: self.size
                         pos:self.pos
-                        radius: self.border_radius
-
+                    border:
+                        width: 10
                 text: "More"
-                size_hint: 0.5, 0.12
+                size_hint: 0.5, 0.22
                 on_release: root.addSearch()

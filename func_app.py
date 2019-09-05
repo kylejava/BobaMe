@@ -103,25 +103,3 @@ def search_again(self, user_city):
         print(self.offset)
     elif(self.offset >= 7):
         print(self.offset)
-
-
-
-def go_back(self, user_city):
-    if(self.offset > 0):
-
-        self.offset = self.offset - 1
-        self.shop = search(user_city , (self.offset))
-        shop = self.shop
-        shop_name = shop[0]
-        shop_location = shop[1]
-        shop_phone = shop[2]
-        shop_review = shop[3]
-        shop_image = shop[4]
-        self.bobashop.text = shop_name
-        self.bobalocation.text = shop_location
-        self.bobaphone.text = shop_phone
-        self.bobareview = shop_review
-        print(self.offset)
-        self.bobaimage = shop_image
-    elif(self.offset == 0):
-        print(self.offset)
