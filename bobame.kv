@@ -52,11 +52,8 @@ WindowManager:
                 Color:
                     rgba: self.back_color
                 Rectangle:
-
-                    size: 600, 54
-
-                    pos: (90 , 5)
-
+                    size: self.size
+                    pos:self.pos
 
             text:"Search"
             on_press: app.root.current = 'InputScreen'
@@ -145,12 +142,12 @@ WindowManager:
 
                 text: "Take Me There!"
                 size_hint: 0.5,0.22
-                background_color:(0 , 0, 0 ,0)
+                #background_color:(0 , 0, 0 ,0)
                 background_normal:''
                 font_size: 30
+                color: (0 , 0 , 0 , 1)
                 font_name: './fonts/SR.ttf'
-                back_color:(.7 , .8 , 1.0 , 1.0)
-
+                back_color:(0 , 0 ,.0 , 0)
                 canvas.before:
                     Color:
                         rgba: self.back_color
@@ -167,15 +164,14 @@ WindowManager:
                 font_size: 30
                 font_name: './fonts/SR.ttf'
                 back_color:(.7 , .8 , 1.0 , 1.0)
-
+                color: (0 , 0 , 0 , 1)
                 canvas.before:
                     Color:
                         rgba: self.back_color
                     Rectangle:
                         size: self.size
                         pos:self.pos
-                    border:
-                        width: 10
+
                 text: "More"
                 size_hint: 0.5, 0.22
                 on_release: root.addSearch()
