@@ -7,6 +7,15 @@ WindowManager:
 <OpenScreen>:
     name: "OpenScreen"
     user_location:user_location
+
+    AsyncImage:
+        nocache: True
+        source: ('./background/background.png')
+        canvas.before:
+            Rectangle:
+                size: self.size
+                pos:self.pos
+
     GridLayout:
         cols:1
         GridLayout:
@@ -18,27 +27,23 @@ WindowManager:
                     font_size: 55
                     size_hint_y: None
                     text: "BobaMe!"
-            Label:
-                font_name: './fonts/SR.ttf'
-                size_hint_y: 500
-                font_size: 30
-                text: "     Find New Boba Shops in your area by\nentering your zip code or your state and city!"
 
-            TextInput:
-                id: user_location
-                font_name: './fonts/SR.ttf'
-                multiline: False
-                #size_hint: (.2, None)
-                size_hint_y: None
-                height: 100
-                width: 10
-                font_size: self.height - 40
-                canvas.before:
-                    Rectangle:
 
-                        size: 600, 54
+                Label:
+                    font_name: './fonts/SR.ttf'
+                    size_hint_y: 500
+                    font_size: 30
+                    text: "     Find New Boba Shops in your area by\nentering your zip code or your state and city!"
 
-                        pos: (90 , 5)
+                TextInput:
+                    id: user_location
+                    font_name: './fonts/SR.ttf'
+                    multiline: False
+                    #size_hint: (.2, None)
+                    size_hint_y: None
+                    height: 100
+                    width: 10
+                    font_size: self.height - 40
 
         Button:
             size_hint: 0.5,0.12
