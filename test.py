@@ -21,11 +21,11 @@ def search(city , offset):
         return (x)
     else:
         for biz in buisness_data['businesses']:
-            shop_name = (biz['name'])
-            shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
-            phone = (biz['phone'])
-            review = ((str(biz['rating'])) + (" Stars"))
-            image = (biz['image_url'])
+#            shop_name = (biz['name'])
+ #           shop_location = ((str(biz['location']['address1'])) +(" ")+"\n"+ (str(biz['location']['city']))+ (" ") + (str(biz['location']['state']))+ (" ") + (str(biz['location']['zip_code'])))
+  #          phone = (biz['phone'])
+   #         review = ((str(biz['rating'])) + (" Stars"))
+    #        image = (biz['image_url'])
             return [shop_name , shop_location , phone , review , image]
 
 
