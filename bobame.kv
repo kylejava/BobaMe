@@ -8,13 +8,6 @@ WindowManager:
     name: "OpenScreen"
     user_location:user_location
 
-    AsyncImage:
-        nocache: True
-        source: ('./background/background.png')
-        canvas.before:
-            Rectangle:
-                size: self.size
-                pos:self.pos
 
     GridLayout:
         cols:1
