@@ -1,13 +1,8 @@
-Hello! I am a Sophomore at CSUSM,
-I was messing around with the Yelp API
-and started to make a simple program that Would
-allow the user to find Boba shop locations in certain
-zip codes or cities.
+#BobaMe
 
-I was really into app development and decided to dedicate an app to it!
+An application that shows the nearest boba shop in the user's zip code or city
 
-I found Kivy! A Python framework capable of creating GUI
-apps for OS X, IOS, Android, and Windows.
+##Tools Used
 
-I hope this app helps you find your next favorite bubble
-tea shop!
+- Python
+- Kivy
