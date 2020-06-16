@@ -1,7 +1,7 @@
 import requests
 import webbrowser
 import json
-#from get_a import getAPI_g , getAPI_y
+from keys import *
 from plyer import gps
 from plyer.facades import GPS
 from kivy.clock import Clock, mainthread
@@ -10,8 +10,8 @@ ssl.match_hostname = lambda cert, hostname: True
 
 
 def search(city , offset):
-    buisness_id = 'aAMbdEgSzj7k5UmGQu9fYg'
-    API_KEY = getAPI_y()
+    buisness_id = 'Insert Buisness ID'
+    API_KEY = getAPIKey()
     ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
     HEADERS = {'Authorization': 'Bearer %s' % API_KEY}
     PARAMETERS = {'term': 'boba',
